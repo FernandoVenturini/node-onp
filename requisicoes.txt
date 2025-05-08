@@ -1,0 +1,105 @@
+*** REQUISICAO
+
+** PROTOCOLOS: Encapsula as coisas e envia pro servidor. Caminho que sesta sendo enviado.
+    - HTTP e HTTPS
+
+METODOS: sao formas de envio:
+    - GET: Buscar dados
+        - recebe:
+            * tipoFiltragem.
+            * nomeUsuario 
+            * (ex: http://meusite.com.br/usuarios?tipoFiltragem=nome&nomeUsuario=Vitor)
+
+-------------------------------------------------------------------------------------------------
+
+    - POST: Envia no corpo da requisicao. Adiciona algum dado.
+        * nome=Vitor
+        * sobreNome=Manoel
+        * idade=22
+        * escolarIdade=ensino_fundamental_completo
+
+-------------------------------------------------------------------------------------------------
+
+    - PUT e PATCH: Edita algum dado.
+        * (ex: http://meusite.com.br/usuarios)
+            * id=450
+            * nome=Adiciona
+            * sobrenome=Caroline
+            * idade=24
+            * escolaridade=ensino_medio_completo
+
+-------------------------------------------------------------------------------------------------
+
+    - DELETE: Usado pra excluir algum dado.
+        * id=450 (envia so id)
+
+-------------------------------------------------------------------------------------------------
+
+CABECALHOS
+    * Header: Envia algum tipo de autorizacao.
+    * ex: (Authorization=Bearer lkjjlkjlkjlkjlkjkljkljlkjlkjklj)
+
+-------------------------------------------------------------------------------------------------
+
+CORPO: E o que faz no GET, POST, PUT, DELETE.
+
+-------------------------------------------------------------------------------------------------
+
+STATUS CODE: E a resposta que o servidor da para uma requisicao.
+    * Os principais status code:
+        - status 200 (Sucesso)
+        - status 201 (Created)
+        - status 400 (Bad Request: quando envia alguma coisa errada)
+        - status 404 (Not found: nao encontrou alguma coisa)
+        - status 500 (Fatal error: erro do servidor, fora do ar etc...)
+
+-------------------------------------------------------------------------------------------------
+
+PORTAS:
+    - 80 (porta padrao)
+
+-------------------------------------------------------------------------------------------------
+
+API REST: E o que o Node.js entrega. Funciona do lado do servidor. Atende as solicitacoes que outra API solicita. Faz isso por meio de rotas, urls etc...
+    * ex: 
+        - adiciona um usuario
+        - https://delivery.com.br/api/usuarios
+        - manda os dados pelo metodo POST
+    * Toda API REST deve ter formato de texto(JSON): Assim que deve ser enviado:
+        {
+            nome: 'Vitor',
+            sobrenome: 'Manoel',
+            idade: 22,
+            email: 'contato@onp.com'
+        }
+
+JSON:
+    * ex: retorna JSON
+    {
+        error: E-mail invalido!
+    }
+
+-------------------------------------------------------------------------------------------------
+
+ROTAS:
+    Ex: API para Loja Virtual.
+
+    * LEVANTAMENTO DE REQUISITOS (REGRA DE NEGOCIOS):
+        CARRINHO DE CHECKOUT: 
+            - carregar produtos                 (ex: https://nomesite.com/api/produtos) - GET
+            - carregar os dados de um produto   (ex: https://nomesite.com/api/produtos/id?id_produto=134) - GET
+            - adiciona no carrinho              (ex: https://nomesite.com/api/produtos/id?id_produto=134) - POST 
+            - ver carrinho                      (ex: https://nomesite.com/api/carrinho) - GET
+            - fechar carrinho                   (ex: https://nomesite.com/api/carrinho) - PUT
+            - pagamento                         (ex: https://nomesite.com/api/pagamento) - POST
+            - e-mail                            (ex: https://nomesite.com/api/servico_email) - POST
+            - geracao de nota fiscal            (ex: https://nomesite.com/api/nota_fiscal) - POST
+            - envio por e-mail da nota fiscal   (ex: https://nomesite.com/api/servico_email/nota_fiscal) - POST
+            - envio de codigo de rastreio
+             do produto                         (ex: https://nomesite.com/api/servico_email/codigo_rastreio) - POST
+    
+    * FUNCIONALIDADES:
+        - ex: https://site.com/api
+
+
+Postman: Serve pra ver os resultados.
