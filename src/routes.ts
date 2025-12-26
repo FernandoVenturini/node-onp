@@ -10,6 +10,16 @@ const router = Router();
 // INSTANCIANDO UMA NOVA CLASSE(alunoController) DA PASTA AlunoController.ts
 const alunoController = new AlunoController();
 
+const authMiddleware = (req:Request, res:Response, next:Function) => { // MIDDLEWARE DE AUTENTICAÇÃO
+	if (req.headers.authorization) {
+		next(); // Se tiver autorização, prossiga para a próxima função.
+	} else {
+		return new Error('usuario nao encontrado!'); // Se não tiver autorização, retorna um erro.
+	}
+
+	
+}
+
 // CRIANDO ROTAS:
 //router.get("/", (req: Request, res: Response) => {
 //    return res.json({Teste: 'Testando'});
@@ -27,7 +37,7 @@ router.get('/criancas/:id_pijama', (req:Request, res:Response) => {
 
 router.get('/',);
 
-router.get('/aluno', alunoController.getAll); // BUSCA TODOS OS ALUNOS
+router.get('/aluno', authMiddleware, alunoController.getAll); // BUSCA TODOS OS ALUNOS
 router.get('/aluno/:id', alunoController.getById) // BUSCA UM ALUNO PELO ID
 router.post('aluno', alunoController.add); // ADICIONAR UM NOVO ALUNO
 router.put('/aluno/:id', alunoController.update); // EDITA OS DADOS DESSE ALUNO

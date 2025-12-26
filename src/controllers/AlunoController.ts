@@ -11,7 +11,7 @@ class AlunoController {
 
     } 
 
-    getAll(req:Request, res:Response) {
+    getAll(req:Request, res:Response) { // método para obter todos os alunos
         // Validar os dados
 
         // Enviar dados para o service
